@@ -4,4 +4,6 @@ import "./index.css";
 import App from "./App.jsx";
 import React from "react";
 
-createRoot(document.getElementById("root")).render(<App />);
+const URL = "https://jsonplaceholder.typicode.com/todos";
+
+createRoot(document.getElementById("root")).render(<App URL={URL} />);
