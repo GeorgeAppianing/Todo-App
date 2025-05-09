@@ -1,0 +1,244 @@
+{
+  "todo": [
+    {
+      "id": 1,
+      "task": "Buy groceries",
+      "completed": false,
+      "priority": "high",
+      "notes": "Include fruits and milk",
+      "category": "personal"
+    },
+    {
+      "id": 2,
+      "task": "Walk the dog",
+      "completed": true,
+      "priority": "medium",
+      "notes": "Evening walk around the park",
+      "category": "personal"
+    },
+    {
+      "id": 3,
+      "task": "Finish React project",
+      "completed": false,
+      "priority": "high",
+      "notes": "Add final features and deploy",
+      "category": "work"
+    },
+    {
+      "id": 4,
+      "task": "Call the plumber",
+      "completed": true,
+      "priority": "medium",
+      "notes": "Leak in the kitchen sink",
+      "category": "home"
+    },
+    {
+      "id": 5,
+      "task": "Write blog post",
+      "completed": false,
+      "priority": "low",
+      "notes": "Topic: Building a Todo App",
+      "category": "work"
+    },
+    {
+      "id": 6,
+      "task": "Prepare presentation",
+      "completed": true,
+      "priority": "high",
+      "notes": "Slides on Q2 results",
+      "category": "work"
+    },
+    {
+      "id": 7,
+      "task": "Send invoices",
+      "completed": false,
+      "priority": "medium",
+      "notes": "Send to clients before Friday",
+      "category": "finance"
+    },
+    {
+      "id": 8,
+      "task": "Fix broken light",
+      "completed": true,
+      "priority": "low",
+      "notes": "Living room ceiling bulb",
+      "category": "home"
+    },
+    {
+      "id": 9,
+      "task": "Study for exam",
+      "completed": false,
+      "priority": "high",
+      "notes": "Focus on JavaScript topics",
+      "category": "study"
+    },
+    {
+      "id": 10,
+      "task": "Clean the garage",
+      "completed": false,
+      "priority": "medium",
+      "notes": "Throw out old boxes",
+      "category": "home"
+    },
+    {
+      "id": 11,
+      "task": "Update resume",
+      "completed": true,
+      "priority": "high",
+      "notes": "Add latest job role",
+      "category": "career"
+    },
+    {
+      "id": 12,
+      "task": "Schedule dentist appointment",
+      "completed": false,
+      "priority": "medium",
+      "notes": "Check-up due next month",
+      "category": "health"
+    },
+    {
+      "id": 13,
+      "task": "Check emails",
+      "completed": true,
+      "priority": "low",
+      "notes": "Clear unread messages",
+      "category": "work"
+    },
+    {
+      "id": 14,
+      "task": "Pay electricity bill",
+      "completed": true,
+      "priority": "high",
+      "notes": "Due by 10th",
+      "category": "finance"
+    },
+    {
+      "id": 15,
+      "task": "Organize bookshelf",
+      "completed": false,
+      "priority": "low",
+      "notes": "Alphabetize by author",
+      "category": "personal"
+    },
+    {
+      "id": 16,
+      "task": "Book flight tickets",
+      "completed": true,
+      "priority": "high",
+      "notes": "Traveling on 25th",
+      "category": "travel"
+    },
+    {
+      "id": 17,
+      "task": "Backup laptop",
+      "completed": false,
+      "priority": "medium",
+      "notes": "Use external hard drive",
+      "category": "tech"
+    },
+    {
+      "id": 18,
+      "task": "Wash car",
+      "completed": true,
+      "priority": "low",
+      "notes": "Vacuum interior too",
+      "category": "personal"
+    },
+    {
+      "id": 19,
+      "task": "Read a book",
+      "completed": false,
+      "priority": "low",
+      "notes": "Finish 'Atomic Habits'",
+      "category": "leisure"
+    },
+    {
+      "id": 20,
+      "task": "Practice guitar",
+      "completed": true,
+      "priority": "medium",
+      "notes": "Focus on fingerstyle",
+      "category": "hobby"
+    },
+    {
+      "id": 21,
+      "task": "Buy birthday gift",
+      "completed": false,
+      "priority": "high",
+      "notes": "Look for something unique",
+      "category": "personal"
+    },
+    {
+      "id": 22,
+      "task": "Call mom",
+      "completed": true,
+      "priority": "medium",
+      "notes": "Ask about her trip",
+      "category": "family"
+    },
+    {
+      "id": 23,
+      "task": "Update portfolio website",
+      "completed": false,
+      "priority": "high",
+      "notes": "Add recent projects",
+      "category": "career"
+    },
+    {
+      "id": 24,
+      "task": "Organize files",
+      "completed": false,
+      "priority": "medium",
+      "notes": "Sort by type and year",
+      "category": "tech"
+    },
+    {
+      "id": 25,
+      "task": "Refactor old code",
+      "completed": true,
+      "priority": "high",
+      "notes": "Clean up CSS and JS",
+      "category": "work"
+    },
+    {
+      "id": 26,
+      "task": "Prepare dinner",
+      "completed": false,
+      "priority": "medium",
+      "notes": "Try a new recipe",
+      "category": "personal"
+    },
+    {
+      "id": 27,
+      "task": "Meditate for 10 mins",
+      "completed": true,
+      "priority": "low",
+      "notes": "Use Headspace app",
+      "category": "health"
+    },
+    {
+      "id": 28,
+      "task": "Learn a new CSS trick",
+      "completed": false,
+      "priority": "medium",
+      "notes": "Check CSS Tricks blog",
+      "category": "study"
+    },
+    {
+      "id": 29,
+      "task": "Clean up email inbox",
+      "completed": true,
+      "priority": "low",
+      "notes": "Archive old threads",
+      "category": "work"
+    },
+    {
+      "id": 30,
+      "task": "Walk 10,000 steps",
+      "completed": false,
+      "priority": "medium",
+      "notes": "Track with Fitbit",
+      "category": "health"
+    }
+  ]
+}

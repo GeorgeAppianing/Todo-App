@@ -41,6 +41,17 @@ function App({ URL }) {
     });
   }
 
+  function handleEdit(id) {
+    axios
+      .put(`${URL}/${id}`, { completed: true, input, id })
+      .then((response) => {
+        const updatedTodo = todos.map((todo) =>
+          todo.id === id ? response.data : todo
+        );
+        setTodos(updatedTodo);
+      });
+  }
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -48,6 +59,7 @@ function App({ URL }) {
   return (
     <div>
       <h1 className="text-2xl">This is a Todo App </h1>
+      <p>{todos.length}</p>
       <form onSubmit={handleSubmit}>
         <label>Enter Todo: </label>
         <input
@@ -63,8 +75,8 @@ function App({ URL }) {
       {!loading ? (
         sortedList.map((todo) => (
           <div key={todo.id}>
-            <h2>Todo: {todo.title}</h2>
-            <p>status: {todo.completed}</p>
+            <h2>Todo: {todo.task}</h2>
+            <h2>status: {todo.notes}</h2>
             <button
               onClick={() => handleDelete(todo.id)}
               className="bg-red-300"
