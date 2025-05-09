@@ -35,12 +35,10 @@ function App({ URL }) {
   }
 
   function handleDelete(id) {
-    axios.delete(
-      `${URL}/${id}`.then(() => {
-        const updatedTodo = todos.filter((todo) => todo.id !== id);
-        setTodos(updatedTodo);
-      })
-    );
+    axios.delete(`${URL}/${id}`).then(() => {
+      const updatedTodo = todos.filter((todo) => todo.id !== id);
+      setTodos(updatedTodo);
+    });
   }
 
   useEffect(() => {
@@ -68,7 +66,7 @@ function App({ URL }) {
             <h2>Todo: {todo.title}</h2>
             <p>status: {todo.completed}</p>
             <button
-              // onClick={() => handleDelete(todo.id)}
+              onClick={() => handleDelete(todo.id)}
               className="bg-red-300"
             >
               Delete
