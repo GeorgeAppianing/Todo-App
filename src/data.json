@@ -239,6 +239,14 @@
       "priority": "medium",
       "notes": "Track with Fitbit",
       "category": "health"
+    },
+    {
+      "id": 31,
+      "task": "Coding",
+      "status": "pending",
+      "priority": "high",
+      "notes": "I have to complete this todo task app",
+      "category": "tech"
     }
   ]
 }
