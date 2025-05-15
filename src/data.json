@@ -241,11 +241,11 @@
       "category": "health"
     },
     {
-      "id": 31,
-      "task": "Coding",
+      "id": "9f7d",
+      "task": "Todo list app",
       "status": "pending",
-      "priority": "high",
-      "notes": "I have to complete this todo task app",
+      "priority": "medium",
+      "notes": "Finish this project in two days",
       "category": "tech"
     }
   ]
