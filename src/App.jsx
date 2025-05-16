@@ -4,15 +4,16 @@ import axios from "axios";
 function App({ URL }) {
   const [todos, setTodos] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [task, setTask] = useState("");
-  const [status, setStatus] = useState("");
-  const [priority, setPriority] = useState("");
-  const [notes, setNotes] = useState("");
-  const [category, setCategory] = useState("");
-  const [editTodo, setEditTodo] = useState(null);
+  const [formData, setFormData] = useState({
+    task: "",
+    status: "",
+    priority: "",
+    notes: "",
+    category: "",
+  });
+  const [editId, setEditId] = useState(null);
 
-  // const sortedList = todos.slice(0, 10);
-
+  // Function for fetching Data
   function fetchData() {
     setLoading(true);
     axios
@@ -24,25 +25,26 @@ function App({ URL }) {
       })
       .catch((error) => {
         console.log("Error message", error);
-        // setLoading(false);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   }
-
+  // Function for Handling submission to Database
   function handleSubmit(e) {
     e.preventDefault();
-    if (!task || !status || !priority || !notes || !category)
+    if (
+      !formData.task ||
+      !formData.status ||
+      !formData.priority ||
+      !formData.notes ||
+      !formData.category
+    )
       return alert("Enter fields");
     setLoading(true);
-    const updatedData = {
-      // id: todos.length + 1, this is not needed as the server will generate an id
-      task,
-      status,
-      priority,
-      notes,
-      category,
-    };
+
     axios
-      .post(URL, updatedData)
+      .post(URL, formData)
       .then((response) => {
         setTodos([response.data, ...todos]);
         setLoading(false);
@@ -52,15 +54,17 @@ function App({ URL }) {
       })
       .finally(() => {
         setLoading(false);
-        setTask("");
-        setStatus("");
-        setPriority("");
-        setNotes("");
-        setCategory("");
+        setFormData({
+          task: "",
+          status: "",
+          priority: "",
+          notes: "",
+          category: "",
+        });
       });
     console.log("submitted");
   }
-
+  // Finction for Handling Delete
   function handleDelete(id) {
     axios
       .delete(`${URL}/${id}`)
@@ -73,28 +77,22 @@ function App({ URL }) {
       });
   }
 
-  function handleEdit(id) {
-    const todoToEdit = todos.find((todo) => todo.id === id);
-    setTask(todoToEdit.task);
-    setStatus(todoToEdit.status);
-    setPriority(todoToEdit.priority);
-    setNotes(todoToEdit.notes);
-    setCategory(todoToEdit.category);
-    setEditTodo(id);
+  // function for handing update/Edit of Task
+  function handleEdit(todo) {
+    setFormData({
+      task: todo.task,
+      status: todo.status,
+      priority: todo.priority,
+      notes: todo.notes,
+      category: todo.category,
+    });
+    setEditId(todo.id);
 
-    // setLoading(true);
-    const updatedData = {
-      task,
-      status,
-      priority,
-      notes,
-      category,
-    };
     axios
-      .put(`${URL}/${id}`, updatedData)
+      .put(`${URL}/${editId}`, formData)
       .then((response) => {
         const newTodo = todos.map((todo) =>
-          todo.id === id ? { ...todo, ...response.data } : todo
+          todo.id === editId ? { ...todo, ...response.data } : todo
         );
         setTodos(newTodo);
         setLoading(false);
@@ -104,52 +102,69 @@ function App({ URL }) {
       })
       .finally(() => {
         setLoading(false);
-        setTask("");
-        setStatus("");
-        setPriority("");
-        setNotes("");
-        setCategory("");
+        setFormData({
+          task: "",
+          status: "",
+          priority: "",
+          notes: "",
+          category: "",
+        });
+        setEditId(null);
       });
-
-    // console.log("submitted");
-
-    // setLoading(false);
-    // setTask("");
-    // setStatus("");
-    // setPriority("");
-    // setNotes("");
-    // setCategory("");
-
-    // setEditTodo(null);
-
-    // setLoading(false);
+  }
+  // function for populating form fields with existing Tasks
+  function handleEditClick(todo) {
+    setFormData({
+      task: todo.task,
+      status: todo.status,
+      priority: todo.priority,
+      notes: todo.notes,
+      category: todo.category,
+    });
+    setEditId(todo.id);
   }
 
   useEffect(() => {
     fetchData();
   }, []);
 
+  const categoryColors = {
+    work: "bg-blue-100 text-blue-700",
+    personal: "bg-green-100 text-green-700",
+    home: "bg-gray-100 text-gray-700",
+    finance: "bg-yellow-100 text-yellow-700",
+    tech: "bg-purple-100 text-purple-700",
+    health: "bg-red-100 text-red-700",
+    career: "bg-orange-100 text-orange-700",
+    family: "bg-pink-100 text-pink-700",
+    study: "bg-indigo-100 text-indigo-700",
+    hobby: "bg-teal-100 text-teal-700",
+    travel: "bg-cyan-100 text-cyan-700",
+    leisure: "bg-lime-100 text-lime-700",
+  };
+
   return (
-    <div className="max-h-screen p-10 flex flex-col mx-auto w-3/4">
-      {/* <p>{todos.length}</p> */}
-      <form onSubmit={handleSubmit} className="">
-        <h1 className="text-2xl font-bold">📝 Task App </h1>
+    <div className=" p-10 flex flex-col mx-auto w-4/5">
+      <h1 className="text-2xl font-bold">📝 Task App</h1>
+      <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-4 p-10">
         <div>
           <label>Task</label>
           <input
             type="text"
-            className="ring-1 p-2 w-full"
-            value={task}
-            onChange={(e) => setTask(e.target.value)}
+            className="ring-1 ring-gray-400 p-2 flex rounded w-full"
+            value={formData.task}
+            onChange={(e) => setFormData({ ...formData, task: e.target.value })}
             placeholder="Eg.Finish React project"
           />
         </div>
         <div>
           <label>Status</label>
           <select
-            value={status}
-            onChange={(e) => setStatus(e.target.value)}
-            className="ring-1 p-2 w-full"
+            value={formData.status}
+            onChange={(e) =>
+              setFormData({ ...formData, status: e.target.value })
+            }
+            className="ring-1 ring-gray-400 p-2 flex rounded w-full"
           >
             <option value="">--Select Status--</option>
             <option value="pending">Pending</option>
@@ -159,9 +174,11 @@ function App({ URL }) {
         <div>
           <label>Priority</label>
           <select
-            value={priority}
-            onChange={(e) => setPriority(e.target.value)}
-            className="ring-1 p-2 w-full"
+            value={formData.priority}
+            onChange={(e) =>
+              setFormData({ ...formData, priority: e.target.value })
+            }
+            className="ring-1 ring-gray-400 p-2 flex rounded w-full"
           >
             <option value="">--Select Priority--</option>
             <option value="high">High</option>
@@ -170,20 +187,13 @@ function App({ URL }) {
           </select>
         </div>
         <div>
-          <label>Notes</label>
-          <textarea
-            value={notes}
-            onChange={(e) => setNotes(e.target.value)}
-            className="h-20 w-full ring-1 p-2 resize-none"
-            placeholder="Details about your task"
-          />
-        </div>
-        <div>
           <label>Category</label>
           <select
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-            className="ring-1 p-2 w-full"
+            value={formData.category}
+            onChange={(e) =>
+              setFormData({ ...formData, category: e.target.value })
+            }
+            className="ring-1 ring-gray-400 p-2 flex rounded w-full"
           >
             <option value="">Select Category</option>
             <option value="health">Health</option>
@@ -200,36 +210,63 @@ function App({ URL }) {
           </select>
         </div>
 
+        <label>Notes</label>
+        <textarea
+          value={formData.notes}
+          onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
+          className="h-20 w-full ring-1 p-2 resize-none ring-gray-400 rounded col-span-full"
+          placeholder="Details about your task"
+        />
+
         <button
-          className="bg-blue-400 hover:bg-blue-500 text-white px-4 py-2 rounded "
+          className="bg-blue-700 hover:bg-blue-500 text-white px-2 py-1 rounded "
           type="submit"
         >
-          Submit
+          Add Task
         </button>
       </form>
 
-      {!loading ? (
-        todos.map((todo) => (
-          <div key={todo.id} className="border">
-            <h2>Title: {todo.task}</h2>
-            <h2>status: {todo.status}</h2>
-            <button
-              onClick={() => handleDelete(todo.id)}
-              className="bg-red-300"
-            >
-              Delete
-            </button>
-            <button
-              // onClick={() => handleEdit(todo.id)}
-              className="bg-yellow-300"
-            >
-              Edit
-            </button>
-          </div>
-        ))
-      ) : (
-        <h2>Loading....</h2>
-      )}
+      {/*  Task Card */}
+      <div className=" grid grid-cols-4 mx-auto gap-4">
+        {!loading ? (
+          todos.map((todo) => (
+            <div key={todo.id} className="bg-white shadow-sm rounded p-4 ">
+              <h2 className="font-bold text-sm my-1">{todo.task}</h2>
+              <p className="text-xs my-1">status: {todo.status}</p>
+              <p className="text-xs my-1">Priority: {todo.priority}</p>
+              <p className="text-xs my-4">{todo.notes}</p>
+
+              <div className="flex justify-between mt-2">
+                <span
+                  className={`text-xs px-2 py-1 rounded-full ${
+                    categoryColors[todo.category]
+                  }`}
+                >
+                  {todo.category}
+                </span>
+
+                <div className="flex gap-x-2">
+                  <button
+                    onClick={() => handleDelete(todo.id)}
+                    className="bg-red-600 text-white px-2 py-1 rounded hover:bg-red-500 text-xs"
+                  >
+                    Delete
+                  </button>
+
+                  <button
+                    // onClick={() => handleEdit(todo.id)}
+                    className="bg-yellow-300 text-white px-2 py-1 rounded hover:bg-yellow-500 text-xs"
+                  >
+                    Edit
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))
+        ) : (
+          <h2>Loading....</h2>
+        )}
+      </div>
     </div>
   );
 }

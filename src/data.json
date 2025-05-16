@@ -1,23 +1,23 @@
 {
   "todo": [
     {
-      "id": 1,
       "task": "Buy groceries",
       "status": "pending",
       "priority": "high",
       "notes": "Include fruits and milk",
-      "category": "personal"
+      "category": "personal",
+      "id": "1"
     },
     {
-      "id": 2,
       "task": "Walk the dog",
       "status": "completed",
       "priority": "medium",
       "notes": "Evening walk around the park",
-      "category": "personal"
+      "category": "personal",
+      "id": "2"
     },
     {
-      "id": 3,
+      "id": "3",
       "task": "Finish React project",
       "status": "pending",
       "priority": "high",
@@ -25,7 +25,7 @@
       "category": "work"
     },
     {
-      "id": 4,
+      "id": "4",
       "task": "Call the plumber",
       "status": "completed",
       "priority": "medium",
@@ -33,7 +33,7 @@
       "category": "home"
     },
     {
-      "id": 5,
+      "id": "5",
       "task": "Write blog post",
       "status": "pending",
       "priority": "low",
@@ -41,7 +41,7 @@
       "category": "work"
     },
     {
-      "id": 6,
+      "id": "6",
       "task": "Prepare presentation",
       "status": "completed",
       "priority": "high",
@@ -49,7 +49,7 @@
       "category": "work"
     },
     {
-      "id": 7,
+      "id": "7",
       "task": "Send invoices",
       "status": "pending",
       "priority": "medium",
@@ -57,7 +57,7 @@
       "category": "finance"
     },
     {
-      "id": 8,
+      "id": "8",
       "task": "Fix broken light",
       "status": "completed",
       "priority": "low",
@@ -65,7 +65,7 @@
       "category": "home"
     },
     {
-      "id": 9,
+      "id": "9",
       "task": "Study for exam",
       "status": "pending",
       "priority": "high",
@@ -73,7 +73,7 @@
       "category": "study"
     },
     {
-      "id": 10,
+      "id": "10",
       "task": "Clean the garage",
       "status": "pending",
       "priority": "medium",
@@ -81,7 +81,7 @@
       "category": "home"
     },
     {
-      "id": 11,
+      "id": "11",
       "task": "Update resume",
       "status": "completed",
       "priority": "high",
@@ -89,7 +89,7 @@
       "category": "career"
     },
     {
-      "id": 12,
+      "id": "12",
       "task": "Schedule dentist appointment",
       "status": "pending",
       "priority": "medium",
@@ -97,7 +97,7 @@
       "category": "health"
     },
     {
-      "id": 13,
+      "id": "13",
       "task": "Check emails",
       "status": "completed",
       "priority": "low",
@@ -105,7 +105,7 @@
       "category": "work"
     },
     {
-      "id": 14,
+      "id": "14",
       "task": "Pay electricity bill",
       "status": "completed",
       "priority": "high",
@@ -113,7 +113,7 @@
       "category": "finance"
     },
     {
-      "id": 15,
+      "id": "15",
       "task": "Organize bookshelf",
       "status": "pending",
       "priority": "low",
@@ -121,7 +121,7 @@
       "category": "personal"
     },
     {
-      "id": 16,
+      "id": "16",
       "task": "Book flight tickets",
       "status": "completed",
       "priority": "high",
@@ -129,7 +129,7 @@
       "category": "travel"
     },
     {
-      "id": 17,
+      "id": "17",
       "task": "Backup laptop",
       "status": "pending",
       "priority": "medium",
@@ -137,7 +137,7 @@
       "category": "tech"
     },
     {
-      "id": 18,
+      "id": "18",
       "task": "Wash car",
       "status": "completed",
       "priority": "low",
@@ -145,7 +145,7 @@
       "category": "personal"
     },
     {
-      "id": 19,
+      "id": "19",
       "task": "Read a book",
       "status": "pending",
       "priority": "low",
@@ -153,7 +153,7 @@
       "category": "leisure"
     },
     {
-      "id": 20,
+      "id": "20",
       "task": "Practice guitar",
       "status": "completed",
       "priority": "medium",
@@ -161,7 +161,7 @@
       "category": "hobby"
     },
     {
-      "id": 21,
+      "id": "21",
       "task": "Buy birthday gift",
       "status": "pending",
       "priority": "high",
@@ -169,15 +169,15 @@
       "category": "personal"
     },
     {
-      "id": 22,
       "task": "Call mom",
       "status": "completed",
       "priority": "medium",
       "notes": "Ask about her trip",
-      "category": "family"
+      "category": "family",
+      "id": "22"
     },
     {
-      "id": 23,
+      "id": "23",
       "task": "Update portfolio website",
       "status": "pending",
       "priority": "high",
@@ -185,7 +185,7 @@
       "category": "career"
     },
     {
-      "id": 24,
+      "id": "24",
       "task": "Organize files",
       "status": "pending",
       "priority": "medium",
@@ -193,7 +193,7 @@
       "category": "tech"
     },
     {
-      "id": 25,
+      "id": "25",
       "task": "Refactor old code",
       "status": "completed",
       "priority": "high",
@@ -201,7 +201,7 @@
       "category": "work"
     },
     {
-      "id": 26,
+      "id": "26",
       "task": "Prepare dinner",
       "status": "pending",
       "priority": "medium",
@@ -209,7 +209,7 @@
       "category": "personal"
     },
     {
-      "id": 27,
+      "id": "27",
       "task": "Meditate for 10 mins",
       "status": "completed",
       "priority": "low",
@@ -217,7 +217,7 @@
       "category": "health"
     },
     {
-      "id": 28,
+      "id": "28",
       "task": "Learn a new CSS trick",
       "status": "pending",
       "priority": "medium",
@@ -225,7 +225,7 @@
       "category": "study"
     },
     {
-      "id": 29,
+      "id": "29",
       "task": "Clean up email inbox",
       "status": "completed",
       "priority": "low",
@@ -233,20 +233,12 @@
       "category": "work"
     },
     {
-      "id": 30,
+      "id": "30",
       "task": "Walk 10,000 steps",
       "status": "pending",
       "priority": "medium",
       "notes": "Track with Fitbit",
       "category": "health"
-    },
-    {
-      "id": "9f7d",
-      "task": "Todo list app",
-      "status": "pending",
-      "priority": "medium",
-      "notes": "Finish this project in two days",
-      "category": "tech"
     }
   ]
 }
