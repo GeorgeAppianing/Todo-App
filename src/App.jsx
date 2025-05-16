@@ -12,7 +12,7 @@ function App({ URL }) {
     category: "",
   });
   const [editId, setEditId] = useState(null);
-
+  const [formModal, setFormModal] = useState(false);
   // Function for fetching Data
   function fetchData() {
     setLoading(true);
@@ -78,7 +78,7 @@ function App({ URL }) {
   }
 
   // function for handing update/Edit of Task
-  function handleEdit(todo) {
+  function handleUpdate(todo) {
     setFormData({
       task: todo.task,
       status: todo.status,
@@ -87,7 +87,6 @@ function App({ URL }) {
       category: todo.category,
     });
     setEditId(todo.id);
-
     axios
       .put(`${URL}/${editId}`, formData)
       .then((response) => {
@@ -113,7 +112,15 @@ function App({ URL }) {
       });
   }
   // function for populating form fields with existing Tasks
-  function handleEditClick(todo) {
+  function handleEditInput(todo) {
+    setFormData({
+      task: "",
+      status: "",
+      priority: "",
+      notes: "",
+      category: "",
+    });
+    setFormModal(true);
     setFormData({
       task: todo.task,
       status: todo.status,
@@ -145,7 +152,7 @@ function App({ URL }) {
 
   return (
     <div className=" p-10 flex flex-col mx-auto w-4/5">
-      <h1 className="text-2xl font-bold">📝 Task App</h1>
+      <h1 className="text-2xl font-bold px-10">📝 Task App</h1>
       <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-4 p-10">
         <div>
           <label>Task</label>
@@ -219,7 +226,7 @@ function App({ URL }) {
         />
 
         <button
-          className="bg-blue-700 hover:bg-blue-500 text-white px-2 py-1 rounded "
+          className="bg-blue-700 hover:bg-blue-500 text-white px-2 py-1 rounded col-span-full"
           type="submit"
         >
           Add Task
@@ -254,7 +261,7 @@ function App({ URL }) {
                   </button>
 
                   <button
-                    // onClick={() => handleEdit(todo.id)}
+                    onClick={() => handleEditInput(todo)}
                     className="bg-yellow-300 text-white px-2 py-1 rounded hover:bg-yellow-500 text-xs"
                   >
                     Edit
@@ -267,8 +274,111 @@ function App({ URL }) {
           <h2>Loading....</h2>
         )}
       </div>
+      <Modal />
     </div>
   );
+
+  function Modal() {
+    return (
+      <div>
+        {formModal && (
+          <div className="flex z-10 bg-black/50 ">
+            <form className="bg-white p-20">
+              <div>
+                <label>Task</label>
+                <input
+                  type="text"
+                  className="ring-1 ring-gray-400 p-2 flex rounded w-full"
+                  value={formData.task}
+                  onChange={(e) =>
+                    setFormData({ ...formData, task: e.target.value })
+                  }
+                  placeholder="Eg.Finish React project"
+                />
+              </div>
+              <div>
+                <label>Status</label>
+                <select
+                  value={formData.status}
+                  onChange={(e) =>
+                    setFormData({ ...formData, status: e.target.value })
+                  }
+                  className="ring-1 ring-gray-400 p-2 flex rounded w-full"
+                >
+                  <option value="">--Select Status--</option>
+                  <option value="pending">Pending</option>
+                  <option value="completed">Completed</option>
+                </select>
+              </div>
+              <div>
+                <label>Priority</label>
+                <select
+                  value={formData.priority}
+                  onChange={(e) =>
+                    setFormData({ ...formData, priority: e.target.value })
+                  }
+                  className="ring-1 ring-gray-400 p-2 flex rounded w-full"
+                >
+                  <option value="">--Select Priority--</option>
+                  <option value="high">High</option>
+                  <option value="medium">Medium</option>
+                  <option value="low">Low</option>
+                </select>
+              </div>
+              <div>
+                <label>Category</label>
+                <select
+                  value={formData.category}
+                  onChange={(e) =>
+                    setFormData({ ...formData, category: e.target.value })
+                  }
+                  className="ring-1 ring-gray-400 p-2 flex rounded w-full"
+                >
+                  <option value="">Select Category</option>
+                  <option value="health">Health</option>
+                  <option value="personal">Personal</option>
+                  <option value="work">Work</option>
+                  <option value="study">Study</option>
+                  <option value="tech">Tech</option>
+                  <option value="career">Career</option>
+                  <option value="family">Family</option>
+                  <option value="hobby">Hobby</option>
+                  <option value="leisure">Leisure</option>
+                  <option value="travel">Travel</option>
+                  <option value="finance">Finance</option>
+                </select>
+              </div>
+
+              <label>Notes</label>
+              <textarea
+                value={formData.notes}
+                onChange={(e) =>
+                  setFormData({ ...formData, notes: e.target.value })
+                }
+                className="h-20 w-full ring-1 p-2 resize-none ring-gray-400 rounded col-span-full"
+                placeholder="Details about your task"
+              />
+              <div className="flex gap-x-2">
+                <button
+                  className="bg-blue-700 hover:bg-blue-500 text-white px-2 py-1 rounded col-span-full"
+                  type="submit"
+                >
+                  Update
+                </button>
+                <button
+                  className="bg-red-700 hover:bg-red-500 text-white px-2 py-1 rounded col-span-full"
+                  type="submit"
+                  onClick={() => setFormModal(!formModal)}
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+        )}
+      </div>
+    );
+  }
 }
 
 export default App;
