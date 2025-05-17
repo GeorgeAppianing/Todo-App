@@ -41,12 +41,12 @@
       "category": "work"
     },
     {
-      "id": "6",
       "task": "Prepare presentation",
       "status": "completed",
       "priority": "high",
       "notes": "Slides on Q2 results",
-      "category": "work"
+      "category": "work",
+      "id": "6"
     },
     {
       "id": "7",

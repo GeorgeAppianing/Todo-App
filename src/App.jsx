@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
+import { Form } from "./Form";
+import { Data } from "./Data";
 function App({ URL }) {
   const [todos, setTodos] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -141,126 +142,22 @@ function App({ URL }) {
     <div className=" p-10 flex flex-col mx-auto w-4/5 ">
       <h1 className="text-2xl font-bold px-10">📝 Task App</h1>
       {!addFormModal && (
-        <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-4 p-10">
-          <div>
-            <label>Task</label>
-            <input
-              type="text"
-              className="ring-1 ring-gray-400 p-2 flex rounded w-full"
-              value={formData.task}
-              onChange={(e) =>
-                setFormData({ ...formData, task: e.target.value })
-              }
-              placeholder="Eg.Finish React project"
-            />
-          </div>
-          <div>
-            <label>Status</label>
-            <select
-              value={formData.status}
-              onChange={(e) =>
-                setFormData({ ...formData, status: e.target.value })
-              }
-              className="ring-1 ring-gray-400 p-2 flex rounded w-full"
-            >
-              <option value="">--Select Status--</option>
-              <option value="pending">Pending</option>
-              <option value="completed">Completed</option>
-            </select>
-          </div>
-          <div>
-            <label>Priority</label>
-            <select
-              value={formData.priority}
-              onChange={(e) =>
-                setFormData({ ...formData, priority: e.target.value })
-              }
-              className="ring-1 ring-gray-400 p-2 flex rounded w-full"
-            >
-              <option value="">--Select Priority--</option>
-              <option value="high">High</option>
-              <option value="medium">Medium</option>
-              <option value="low">Low</option>
-            </select>
-          </div>
-          <div>
-            <label>Category</label>
-            <select
-              value={formData.category}
-              onChange={(e) =>
-                setFormData({ ...formData, category: e.target.value })
-              }
-              className="ring-1 ring-gray-400 p-2 flex rounded w-full"
-            >
-              <option value="">Select Category</option>
-              <option value="health">Health</option>
-              <option value="personal">Personal</option>
-              <option value="work">Work</option>
-              <option value="study">Study</option>
-              <option value="tech">Tech</option>
-              <option value="career">Career</option>
-              <option value="family">Family</option>
-              <option value="hobby">Hobby</option>
-              <option value="leisure">Leisure</option>
-              <option value="travel">Travel</option>
-              <option value="finance">Finance</option>
-            </select>
-          </div>
-          <label>Notes</label>
-          <textarea
-            value={formData.notes}
-            onChange={(e) =>
-              setFormData({ ...formData, notes: e.target.value })
-            }
-            className="h-20 w-full ring-1 p-2 resize-none ring-gray-400 rounded col-span-full"
-            placeholder="Details about your task"
-          />
-          <button
-            className="bg-blue-700 hover:bg-blue-500 text-white px-2 py-1 rounded col-span-full"
-            type="submit"
-          >
-            Add Task
-          </button>
-        </form>
+        <Form
+          handleSubmit={handleSubmit}
+          setFormData={setFormData}
+          formData={formData}
+        />
       )}
 
       {/*  Task Card */}
-      <div className=" grid grid-cols-4 mx-auto gap-4">
+      <div>
         {!loading ? (
-          todos.map((todo) => (
-            <div key={todo.id} className="bg-white shadow-sm rounded p-4 ">
-              <h2 className="font-bold text-sm my-1">{todo.task}</h2>
-              <p className="text-xs my-1">status: {todo.status}</p>
-              <p className="text-xs my-1">Priority: {todo.priority}</p>
-              <p className="text-xs my-4">{todo.notes}</p>
-
-              <div className="flex justify-between mt-2">
-                <span
-                  className={`text-xs px-2 py-1 rounded-full ${
-                    categoryColors[todo.category]
-                  }`}
-                >
-                  {todo.category}
-                </span>
-
-                <div className="flex gap-x-2">
-                  <button
-                    onClick={() => handleDelete(todo.id)}
-                    className="bg-red-600 text-white px-2 py-1 rounded hover:bg-red-500 text-xs"
-                  >
-                    Delete
-                  </button>
-
-                  <button
-                    onClick={() => handleEditInput(todo)}
-                    className="bg-yellow-300 text-white px-2 py-1 rounded hover:bg-yellow-500 text-xs"
-                  >
-                    Edit
-                  </button>
-                </div>
-              </div>
-            </div>
-          ))
+          <Data
+            todos={todos}
+            handleDelete={handleDelete}
+            handleEditInput={handleEditInput}
+            categoryColors={categoryColors}
+          />
         ) : (
           <h2>Loading....</h2>
         )}
@@ -273,101 +170,13 @@ function App({ URL }) {
     return (
       <div>
         {formModal && (
-          <div className="flex z-10 bg-black/70 inset-0  fixed justify-center items-center">
-            <form className="bg-white p-10 w-1/2 rounded-lg">
-              <div>
-                <p className="text-3xl font-bold">Edit</p>
-                <label>Task</label>
-                <input
-                  type="text"
-                  className="ring-1 ring-gray-400 p-2 flex rounded w-full"
-                  value={formData.task}
-                  onChange={(e) =>
-                    setFormData({ ...formData, task: e.target.value })
-                  }
-                  placeholder="Eg.Finish React project"
-                />
-              </div>
-              <div>
-                <label>Status</label>
-                <select
-                  value={formData.status}
-                  onChange={(e) =>
-                    setFormData({ ...formData, status: e.target.value })
-                  }
-                  className="ring-1 ring-gray-400 p-2 flex rounded w-full"
-                >
-                  <option value="">--Select Status--</option>
-                  <option value="pending">Pending</option>
-                  <option value="completed">Completed</option>
-                </select>
-              </div>
-              <div>
-                <label>Priority</label>
-                <select
-                  value={formData.priority}
-                  onChange={(e) =>
-                    setFormData({ ...formData, priority: e.target.value })
-                  }
-                  className="ring-1 ring-gray-400 p-2 flex rounded w-full"
-                >
-                  <option value="">--Select Priority--</option>
-                  <option value="high">High</option>
-                  <option value="medium">Medium</option>
-                  <option value="low">Low</option>
-                </select>
-              </div>
-              <div>
-                <label>Category</label>
-                <select
-                  value={formData.category}
-                  onChange={(e) =>
-                    setFormData({ ...formData, category: e.target.value })
-                  }
-                  className="ring-1 ring-gray-400 p-2 flex rounded w-full"
-                >
-                  <option value="">Select Category</option>
-                  <option value="health">Health</option>
-                  <option value="personal">Personal</option>
-                  <option value="work">Work</option>
-                  <option value="study">Study</option>
-                  <option value="tech">Tech</option>
-                  <option value="career">Career</option>
-                  <option value="family">Family</option>
-                  <option value="hobby">Hobby</option>
-                  <option value="leisure">Leisure</option>
-                  <option value="travel">Travel</option>
-                  <option value="finance">Finance</option>
-                </select>
-              </div>
-
-              <label>Notes</label>
-              <textarea
-                value={formData.notes}
-                onChange={(e) =>
-                  setFormData({ ...formData, notes: e.target.value })
-                }
-                className="h-20 w-full ring-1 p-2 resize-none ring-gray-400 rounded col-span-full"
-                placeholder="Details about your task"
-              />
-              <div className="flex gap-x-2">
-                <button
-                  className="bg-blue-700 hover:bg-blue-500 text-white px-2 py-1 rounded col-span-full"
-                  type="submit"
-                  onClick={() => handleUpdate(formData)}
-                >
-                  Update
-                </button>
-                <button
-                  className="bg-red-700 hover:bg-red-500 text-white px-2 py-1 rounded col-span-full"
-                  type="submit"
-                  onClick={() => setFormModal(!formModal)}
-                >
-                  Cancel
-                </button>
-              </div>
-            </form>
-          </div>
+          <FormModal
+            setFormData={setFormData}
+            formData={formData}
+            handleUpdate={handleUpdate}
+            setFormModal={setFormModal}
+            formModal={formModal}
+          />
         )}
       </div>
     );
