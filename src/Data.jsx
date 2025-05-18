@@ -1,14 +1,16 @@
 import React from "react";
 
 export const Data = ({
-  todos,
+  //   todos,
+  filteredSearch,
+
   handleDelete,
   handleEditInput,
   categoryColors,
 }) => {
   return (
     <div className=" grid grid-cols-4 mx-auto gap-4">
-      {todos.map((todo) => (
+      {filteredSearch.map((todo) => (
         <div key={todo.id} className="bg-white shadow-sm rounded p-4 ">
           <h2 className="font-bold text-sm my-1">{todo.task}</h2>
           <p className="text-xs my-1">status: {todo.status}</p>

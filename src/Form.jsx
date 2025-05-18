@@ -1,8 +1,23 @@
 import React from "react";
 
-export const Form = ({ handleSubmit, setFormData, formData }) => {
+export const Form = ({
+  handleSubmit,
+  setFormData,
+  formData,
+  searchQuery,
+  setSearchQuery,
+}) => {
   return (
     <div>
+      <div>
+        <label htmlFor="">Search</label>
+        <input
+          type="text"
+          onChange={(e) => setSearchQuery(e.target.value)}
+          value={searchQuery}
+          className="ring ring-gray-400 rounded"
+        />
+      </div>
       <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-4 p-10">
         <div>
           <label>Task</label>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Form } from "./Form";
 import { Data } from "./Data";
+import { FormModal } from "./FormModal";
 function App({ URL }) {
   const [todos, setTodos] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -15,6 +16,12 @@ function App({ URL }) {
   const [editId, setEditId] = useState(null);
   const [formModal, setFormModal] = useState(false);
   const [addFormModal, setAddFormModal] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const filteredSearch = todos.filter((todo) =>
+    todo.task.toLowerCase().includes(searchQuery.toLocaleLowerCase())
+  );
+
   // Function for fetching Data
   function fetchData() {
     setLoading(true);
@@ -146,6 +153,8 @@ function App({ URL }) {
           handleSubmit={handleSubmit}
           setFormData={setFormData}
           formData={formData}
+          earchQuery={searchQuery}
+          setSearchQuery={setSearchQuery}
         />
       )}
 
@@ -153,6 +162,9 @@ function App({ URL }) {
       <div>
         {!loading ? (
           <Data
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+            filteredSearch={filteredSearch}
             todos={todos}
             handleDelete={handleDelete}
             handleEditInput={handleEditInput}
